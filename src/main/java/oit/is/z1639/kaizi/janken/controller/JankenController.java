@@ -20,6 +20,11 @@ public class JankenController {
     return "janken.html";
   }
 
+  @GetMapping("/janken")
+  public String janken() {
+    return "janken.html";
+  }
+
   @GetMapping("/hand_rock")
   public String hand_rock(ModelMap model) {
     String myhand = "ぐー";
