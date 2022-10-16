@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class JankenController {
   @PostMapping("/join")
-  public String join(@RequestParam String kakeru1, ModelMap model) {
-    String kakeruResult = kakeru1;
-    model.addAttribute("kakeruResult", kakeruResult);
+  public String join(@RequestParam String name, ModelMap model) {
+    model.addAttribute("name", name);
     return "janken.html";
   }
 
@@ -21,4 +20,36 @@ public class JankenController {
     return "janken.html";
   }
 
+  @GetMapping("/hand_rock")
+  public String hand_rock(ModelMap model) {
+    String myhand = "ぐー";
+    String cpuhand = "ぐー";
+    String result = "引き分け";
+    model.addAttribute("myhand", myhand);
+    model.addAttribute("cpuhand", cpuhand);
+    model.addAttribute("result", result);
+    return "janken.html";
+  }
+
+  @GetMapping("/hand_scissors")
+  public String hand_scissors(ModelMap model) {
+    String myhand = "ちょき";
+    String cpuhand = "ぐー";
+    String result = "負け";
+    model.addAttribute("myhand", myhand);
+    model.addAttribute("cpuhand", cpuhand);
+    model.addAttribute("result", result);
+    return "janken.html";
+  }
+
+  @GetMapping("/hand_paper")
+  public String hand_paper(ModelMap model) {
+    String myhand = "ぱー";
+    String cpuhand = "ぐー";
+    String result = "勝ち";
+    model.addAttribute("myhand", myhand);
+    model.addAttribute("cpuhand", cpuhand);
+    model.addAttribute("result", result);
+    return "janken.html";
+  }
 }

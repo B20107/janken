@@ -1,3 +1,35 @@
-<div th:if="${kakeruResult}">
-  Hi [[${kakeruResult}]]
-</div>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>jankendao</title>
+</head>
+
+<h1>
+  Janken Game!!
+</h1>
+
+<br>
+
+<body>
+  <div th:if="${name}">
+    Hi [[${name}]]
+  </div>
+  <br>
+  <a href="/hand_rock">ぐー</a>
+  <a href="/hand_scissors">ちょき</a>
+  <a href="/hand_paper">ぱー</a>
+  <br>
+  <div th:if="${result}">
+    あなたの手 [[${myhand}]]
+    <br>
+    相手の手 [[${cpuhand}]]
+    <br>
+    結果 あなたの[[${result}]]
+  </div>
+
+
+</body>
+
+</html>
