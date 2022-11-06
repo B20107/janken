@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
+
+<head>
+  <meta charset="utf-8">
+  <title>Janken Ver5</title>
+</head>
+
+<body>
+  <h1>相手の手を待っています</h1>
+  <div th:if="${name}">
+    Hi [[${name}]]
+  </div>
+</body>
+
+</html>
