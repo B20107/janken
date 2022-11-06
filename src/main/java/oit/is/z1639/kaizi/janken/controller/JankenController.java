@@ -18,6 +18,8 @@ import oit.is.z1639.kaizi.janken.model.User;
 import oit.is.z1639.kaizi.janken.model.UserMapper;
 import oit.is.z1639.kaizi.janken.model.Match;
 import oit.is.z1639.kaizi.janken.model.MatchMapper;
+import oit.is.z1639.kaizi.janken.model.MatchInfo;
+import oit.is.z1639.kaizi.janken.model.MatchInfoMapper;
 
 @Controller
 
@@ -28,6 +30,9 @@ public class JankenController {
 
   @Autowired
   MatchMapper matchMapper;
+
+  @Autowired
+  MatchInfoMapper matchInfoMapper;
 
   @PostMapping("/join")
   public String join(@RequestParam String name, ModelMap model) {
@@ -45,9 +50,11 @@ public class JankenController {
     String loginUser = prin.getName();
     ArrayList<User> users = userMapper.selectAllUser();
     ArrayList<Match> matches = matchMapper.selectAllMatches();
+    ArrayList<MatchInfo> matchInfo = matchInfoMapper.selectAllMatchInfo();
     model.addAttribute("name", loginUser);
     model.addAttribute("users", users);
     model.addAttribute("matches", matches);
+    model.addAttribute("matchInfo", matchInfo);
     return "janken.html";
   }
 
@@ -93,6 +100,15 @@ public class JankenController {
     model.addAttribute("user2", user2);
     matchMapper.InsertMatch(user1.getId(), id, user1Hand, cpuhand);
     return "match.html";
+  }
+
+  @GetMapping("/wait")
+  public String wait(@RequestParam int id, @RequestParam String user1Hand, Principal prin, ModelMap model) {
+    String loginUser = prin.getName();
+    User user1 = userMapper.selectByName(loginUser);
+    model.addAttribute("name", loginUser);
+    matchInfoMapper.InsertMatchInfo(user1.getId(), id, user1Hand, true);
+    return "wait.html";
   }
 
   @GetMapping("/hand_rock")
