@@ -3,45 +3,38 @@
 
 <head>
   <meta charset="utf-8">
-  <title>SpringBoot Sample3-1</title>
+  <title>Janken Ver4</title>
 </head>
 
 <body>
   <h1>Janken Game!!</h1>
   <a href="/logout">ログアウト</a>
   <br>
-  <a href="/entry">エントリー</a>
-  <!--roomがあった場合に表示される-->
-  <!--objectはdivの中でroomオブジェクトのフィールドにアクセスすることを示す-->
-  <div th:if="${room}">
-    DI利用
-    <ul>
-      <!--roomオブジェクトのroomNoというフィールドを指定している-->
-      <li>RoomNo:[[${room.roomNo}]]</li>
-      <!--eachは所謂for each．この場合roomオブジェクトのusersフィールドにあるすべてのデータを一通り表示する
-          thが指定されているので[]が不要になる-->
-      <li th:each="user : ${room.users}">[[${user}]]</li>
-    </ul>
-  </div>
-
-  <br>
-
   <div th:if="${name}">
     Hi [[${name}]]
   </div>
-  <br>
-  <a href="/hand_rock">ぐー</a>
-  <a href="/hand_scissors">ちょき</a>
-  <a href="/hand_paper">ぱー</a>
-  <br>
-  <div th:if="${result}">
-    あなたの手 [[${myhand}]]
-    <br>
-    相手の手 [[${cpuhand}]]
-    <br>
-    結果 あなたの[[${result}]]
+
+  <div th:if="${users}">
+    <h2>エントリー</h2>
+    <ul>
+      <li th:each="user : ${users}">
+        <a th:href="@{/match(id=${user.id})}"> [[${user.name}]] </a>
+      </li>
+    </ul>
   </div>
 
+  <div th:if="${matches}">
+    <h2>試合結果</h2>
+    <div th:each="match:${matches}">
+      <tr>
+        <td>id:[[${match.id}]]</td>
+        <td>user1:[[${match.user1}]]</td>
+        <td>user2:[[${match.user2}]]</td>
+        <td>user1の手:[[${match.user1Hand}]]</td>
+        <td>user2の手:[[${match.user2Hand}]]</td>
+      </tr>
+    </div>
+  </div>
 
 </body>
 

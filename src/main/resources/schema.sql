@@ -1,10 +1,10 @@
 CREATE TABLE users (
-    id IDENTITY PRIMARY KEY,
+    id IDENTITY,
     name VARCHAR NOT NULL
 );
 
 CREATE TABLE matches (
-    id IDENTITY PRIMARY KEY,
+    id IDENTITY,
     user1 INT,
     user2 INT,
     user1Hand VARCHAR NOT NULL,
